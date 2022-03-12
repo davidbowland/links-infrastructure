@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  Infrastructure for dbowland.com project
+  Infrastructure for dbowland.com links project
 
 Parameters:
   Environment:
