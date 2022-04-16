@@ -70,6 +70,7 @@ Resources:
       UserPoolTags:
         'created-by': 'links-infrastructure'
         'created-for': 'links'
+        'environment': !Ref Environment
 
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
@@ -165,6 +166,13 @@ Resources:
               - Effect: Allow
                 Action: 'mobileanalytics:PutEvents'
                 Resource: '*'
+      Tags:
+        - Key: 'created-by'
+          Value: 'links-infrastructure'
+        - Key: 'created-for'
+          Value: 'links'
+        - Key: 'environment'
+          Value: !Ref Environment
 
   UnauthenticatedRole:
     Type: AWS::IAM::Role
@@ -202,6 +210,13 @@ Resources:
               - Effect: Allow
                 Action: 'mobileanalytics:PutEvents'
                 Resource: '*'
+      Tags:
+        - Key: 'created-by'
+          Value: 'links-infrastructure'
+        - Key: 'created-for'
+          Value: 'links'
+        - Key: 'environment'
+          Value: !Ref Environment
 
   # Deployment storage
 
@@ -225,6 +240,8 @@ Resources:
           Value: 'links-infrastructure'
         - Key: 'created-for'
           Value: 'links'
+        - Key: 'environment'
+          Value: !Ref Environment
 
   # Deployment roles
 
@@ -250,6 +267,13 @@ Resources:
               - Effect: Allow
                 Action: 'sns:publish'
                 Resource: '*'
+      Tags:
+        - Key: 'created-by'
+          Value: 'links-infrastructure'
+        - Key: 'created-for'
+          Value: 'links'
+        - Key: 'environment'
+          Value: !Ref Environment
 
   CloudFormationRole:
     Type: AWS::IAM::Role
@@ -277,6 +301,13 @@ Resources:
                   - 'account:*'
                 Resource: '*'
       RoleName: !FindInMap [EnvironmentMap, !Ref Environment, roleNameCloudFormation]
+      Tags:
+        - Key: 'created-by'
+          Value: 'links-infrastructure'
+        - Key: 'created-for'
+          Value: 'links'
+        - Key: 'environment'
+          Value: !Ref Environment
 
   PipelineRole:
     Type: AWS::IAM::Role
@@ -317,6 +348,13 @@ Resources:
                   - !Sub 'arn:aws:s3:::${LambdaBucket}/*'
                   - !Sub 'arn:aws:s3:::${LambdaBucket}'
       RoleName: !FindInMap [EnvironmentMap, !Ref Environment, roleNamePipeline]
+      Tags:
+        - Key: 'created-by'
+          Value: 'links-infrastructure'
+        - Key: 'created-for'
+          Value: 'links'
+        - Key: 'environment'
+          Value: !Ref Environment
 
   # Deployment users
 
@@ -341,6 +379,8 @@ Resources:
           Value: 'links-infrastructure'
         - Key: 'created-for'
           Value: 'links'
+        - Key: 'environment'
+          Value: !Ref Environment
 
   UiUser:
     Type: AWS::IAM::User
@@ -363,3 +403,5 @@ Resources:
           Value: 'links-infrastructure'
         - Key: 'created-for'
           Value: 'links'
+        - Key: 'environment'
+          Value: !Ref Environment
